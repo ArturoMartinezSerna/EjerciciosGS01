@@ -34,4 +34,14 @@ public class Utilidades {
 		
 		return factorial;
 	}
+	
+	public static int calculaPotencia(int b, int e) {
+		int resul = 1;
+		
+		for(int i = 0; i < e; i++) {
+			resul *= b;
+		}
+		return resul;
+	}
+	
 }

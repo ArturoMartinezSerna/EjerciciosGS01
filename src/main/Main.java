@@ -18,6 +18,8 @@ public class Main {
 			break;
 			case 2: pideCalculaFactorial();
 			break;
+			case 3: pideCalculaPotencia();
+			break;
 			}
 		}while(opcion != 0);
 	}
@@ -64,5 +66,20 @@ public class Main {
 	/*
 	 * 3. Escribe un programa en Java que reciba dos números (x, y) muestre por pantalla el resultado de x elevado a y.
 	 */
+	private static void pideCalculaPotencia() {
+		Scanner in = new Scanner(System.in);
+		int x;
+		int y;
+		int resul;
+		System.out.println("Introduzca la base de la potencia:");
+		x = in.nextInt();
+		System.out.println("Introduzca el exponente de la potencia:");
+		y = in.nextInt();
+		
+		resul = Utilidades.calculaPotencia(x, y);
+		
+		System.out.println("El resultado de " + x + " elevado a " + y + " es: " + resul);
+	}
+	
 	
 }
