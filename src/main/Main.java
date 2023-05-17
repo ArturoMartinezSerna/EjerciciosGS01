@@ -73,16 +73,15 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		int x;
 		int y;
-		int resul;
+		double resul;
 		System.out.println("Introduzca la base de la potencia:");
 		x = in.nextInt();
 		System.out.println("Introduzca el exponente de la potencia:");
 		y = in.nextInt();
 		
-		// TODO: RECURSIVE
-		//resul = Utilidad.calculaPotencia(x, y);
+		resul = Utilidad.calculaPotencia(x, y);
 		
-		//System.out.println("El resultado de " + x + " elevado a " + y + " es: " + resul);
+		System.out.println("El resultado de " + x + " elevado a " + y + " es: " + resul);
 	}
 	
 	/*
