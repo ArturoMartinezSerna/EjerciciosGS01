@@ -20,6 +20,8 @@ public class Main {
 			break;
 			case 3: pideCalculaPotencia();
 			break;
+			case 4: juegoDosSumas();
+			break;
 			}
 		}while(opcion != 0);
 	}
@@ -29,6 +31,7 @@ public class Main {
 		System.out.println("1: Ordenar 3 valores");
 		System.out.println("2: Calcular factorial");
 		System.out.println("3: Elevar potencia");
+		System.out.println("4: Dos sumas hasta 200 y hasta que salga el 0");
 		System.out.println("0: Salir");
 	}
 	
@@ -44,10 +47,10 @@ public class Main {
 			arrayInts[i-1] = in.nextInt();
 		}
 		
-		arrayInts = Utilidades.ordenaValoresMm(arrayInts);
+		arrayInts = Utilidad.ordenaValoresMm(arrayInts);
 		
 		System.out.println("Los valores ordenados de mayor a menor son:");
-		Utilidades.mostrarArray(arrayInts);
+		Utilidad.mostrarArray(arrayInts);
 	}
 	
 	/*
@@ -60,7 +63,7 @@ public class Main {
 		System.out.println("Introduzca un número del que calcular su factorial:");
 		n = in.nextInt();
 		
-		System.out.println("El factorial de " + n + " es: " + Utilidades.calculaFactorial(n));
+		System.out.println("El factorial de " + n + " es: " + Utilidad.calculaFactorial(n));
 	}
 	
 	/*
@@ -76,10 +79,43 @@ public class Main {
 		System.out.println("Introduzca el exponente de la potencia:");
 		y = in.nextInt();
 		
-		resul = Utilidades.calculaPotencia(x, y);
+		// TODO: RECURSIVE
+		//resul = Utilidad.calculaPotencia(x, y);
 		
-		System.out.println("El resultado de " + x + " elevado a " + y + " es: " + resul);
+		//System.out.println("El resultado de " + x + " elevado a " + y + " es: " + resul);
 	}
 	
-	
+	/*
+	 * 4. Escribe un algoritmo que lea números introducidos de manera consecutiva y aleatoria por teclado hasta
+			que el valor introducido sea 0 (cero). Suma todos los valores introducidos antes de que aparezca el
+			primero mayor que 200. Por otra parte, suma todos los que entran a continuación de éste hasta la
+			aparición del cero. Por último, el algoritmo deberá visualizar el número de introducciones (sin contar el
+			cero ni el primer número mayor de 200), la primera suma y la segunda. Contempla la posibilidad de que
+			entre antes el 0 que el primer número mayor de 200.
+	 */
+	private static void juegoDosSumas() {
+		Scanner in = new Scanner(System.in);
+		int primeraSuma = 0;
+		int segundaSuma = 0;
+		int num;
+		System.out.println("Sumaremos los números introducidos hasta que se introduzca uno mayor de 200.");
+		System.out.println("Introduzca 0 para finalizar.");
+		
+		do {
+			System.out.println("Introduzca un número para la primera suma:");
+			num = in.nextInt();
+			primeraSuma += num;
+			if(num > 200)
+				primeraSuma -= num;
+		}while(num != 0 && num <= 200);
+		while(num != 0) {
+			System.out.println("Introduzca un número para la segunda suma:");
+			num = in.nextInt();
+			segundaSuma += num;
+		}
+		
+		System.out.println("La primera suma dio como resultado: " + primeraSuma);
+		System.out.println("La segunda suma dio como resultado: " + segundaSuma);
+	}
+		
 }
