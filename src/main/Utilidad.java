@@ -182,4 +182,101 @@ public class Utilidad {
 			}
 			return true;
 		}
+	
+	/**
+	 * Suma los múltiplos enteros, contando el inicial y el final, de un número
+	 * @param inicio el primer número entero a sumar
+	 * @param fin el último número a sumar
+	 * @param multiplo el número del que tiene que ser múltiplo para ser sumado
+	 * @return la suma de la secuencia
+	 */
+	public static int sumaMultiplosFor(int inicio, int fin, int multiplo) {
+		int suma = 0;
+		
+		//Comprobamos si inicio es múltiplo
+		if(inicio % multiplo != 0)
+			inicio = nextMultiplo(inicio, multiplo);
+		
+		for(int i = inicio; i <= fin; i += multiplo) {
+			suma += i;
+		}
+		
+		return suma;
+	}
+		/**
+		 * Calcula el siguiente múltiplo a partir de inicio, sin contar el inicio.
+		 * @param inicio el punto de inicio a buscar el múltiplo
+		 * @param multiplo el número del cual el número que buscamos es múltiplo
+		 * @return el múltiplo más cercano
+		 */
+		public static int nextMultiplo(int inicio, int multiplo) {
+			
+			return inicio + (multiplo - inicio%multiplo);
+			
+		}
+		
+		// Para el ejercicio 12
+		public static int sumaMultiplosWhile(int inicio, int fin, int multiplo) {
+			int suma = 0;
+			int contador = inicio;
+			//Comprobamos si inicio es múltiplo
+			if(inicio % multiplo != 0)
+				inicio = nextMultiplo(inicio, multiplo);
+			
+			while (contador <= fin) {
+				suma += contador;
+				contador += multiplo;
+			}
+			
+			return suma;
+		}
+		
+		// Para el ejercicio 12
+		public static int sumaMultiplosDoWhile(int inicio, int fin, int multiplo) {
+			int suma = 0;
+			int contador;
+			//Comprobamos si inicio es múltiplo
+			if(inicio % multiplo != 0)
+				inicio = nextMultiplo(inicio, multiplo);
+			
+			do {
+				contador = inicio;
+				suma += contador;
+				contador += multiplo;
+			} while (contador <= fin);
+			
+			return suma;
+		}
+		
+	/**
+	 * Calcula el promedio en un array de notas
+	 * @param notas el array del que calcular
+	 * @return la media de las notas
+	 */
+	public static double promedio(int[] notas) {
+		double media = 0;
+		
+		for (int nota : notas) {
+			media += nota;
+		}
+		media = (double) (media / notas.length);
+		return media;
+	}
+
+	/**
+	 * Calcula un String con la tabla de multiplicar del multiplicador
+	 * @param multiplicador el número del que devolver la tabla
+	 * @return un String con la tabla de multiplicar
+	 */
+	public static String tablaMultiplicar(int multiplicador) {
+		String tabla = new String("*****Tabla de multiplicar del " + multiplicador + "*****\n\n");
+		
+		
+		for(int i = 1; i <= 10; i++)
+			// Si el numero es menor de 10, le ponemos un espacio extra para formato
+			tabla += "\t" + multiplicador + " x " + i + (i < 10 ? " " : "") + " = " + multiplicador * i + "\n";
+		
+		return tabla;
+	}
+	
 }

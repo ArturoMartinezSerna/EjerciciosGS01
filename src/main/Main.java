@@ -1,5 +1,6 @@
 package main;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -30,20 +31,34 @@ public class Main {
 			break;
 			case 8: buscaMayor10Decenas();
 			break;
+			case 9: suma100PrimerosEnteros();
+			break;
+			case 10: sumaMultiplos3(1, 1000);
+			break;
+			case 11: promedio3Notas();
+			break;
+			case 12: sumaEnterosImpares(0, 100);
+			break;
+			case 13: mostrarTablaNumero();
 			}
 		}while(opcion != 0);
 	}
 	
 	private static void mostrarMenu() {
 		System.out.println("***** Introduzca el número del ejercicio: *****");
-		System.out.println("1: Ordenar 3 valores");
-		System.out.println("2: Calcular factorial");
-		System.out.println("3: Elevar potencia");
-		System.out.println("4: Dos sumas hasta 200 y hasta que salga el 0");
-		System.out.println("5: Secuencia consecutiva más repetida hasta que salga el 0");
-		System.out.println("6: Calcula el valor del dígito de un número");
-		System.out.println("7: Busca los primeros tres números perfectos");
-		System.out.println("8: Busca el mayor número entre 10 decenas");
+		System.out.println(" 1: Ordenar 3 valores");
+		System.out.println(" 2: Calcular factorial");
+		System.out.println(" 3: Elevar potencia");
+		System.out.println(" 4: Dos sumas hasta 200 y hasta que salga el 0");
+		System.out.println(" 5: Secuencia consecutiva más repetida hasta que salga el 0");
+		System.out.println(" 6: Calcula el valor del dígito de un número");
+		System.out.println(" 7: Busca los primeros tres números perfectos");
+		System.out.println(" 8: Busca el mayor número entre 10 decenas");
+		System.out.println(" 9: Suma los primeros 100 enteros");
+		System.out.println("10: Suma los múltiplos de 3 entre 1 y 1000");
+		System.out.println("11: Calcula la media de 3 números");
+		System.out.println("12: Suma los enteros impares entre 0 y 100");
+		System.out.println("13: Mostrar la tabla de multiplicar de un número");
 		System.out.println("0: Salir");
 	}
 	
@@ -256,4 +271,91 @@ public class Main {
 			System.out.println("El mayor número fue el: " + record);
 			return record;
 		}
+	
+	/*
+	 * 9. Realiza un programa en Java que sume los 100 primeros números enteros. Usa el bucle for
+	 */
+	private static void suma100PrimerosEnteros() {
+		int suma;
+		
+		System.out.println("Calculando la suma de los 100 primeros números enteros:");
+		suma = Utilidad.sumaMultiplosFor(1, 100, 1);
+		
+		System.out.println("La suma es: " + suma);
+	}
+	
+	/*
+	 * 10. Implementa un programa en Java que sume los múltiplos de 3 entre el 1 y el 1000. Usa el bucle for.
+	 */
+	private static void sumaMultiplos3(int inicio, int fin) {
+		int suma;
+		
+		System.out.println("Calculando la suma de los múltiplos de 3 entre " + inicio + " y " + fin + ":");
+		suma = Utilidad.sumaMultiplosFor(inicio, fin, 3);
+		
+		System.out.println("La suma es: " + suma);
+	}
+	
+	/*
+	 * 11. Implementa un programa en Java que calcule el promedio de 3 notas introducidas por teclado y
+			muestre por pantalla el resultado. Cuida tanto el formato de entrada como el de salida.
+	 */
+	private static void promedio3Notas() {
+		
+		final int NUM_NOTAS = 3;
+		
+		Scanner in = new Scanner(System.in);
+		int[] notas = new int[NUM_NOTAS];
+		DecimalFormat format = new DecimalFormat("0.00");	
+		for(int i = 0; i < NUM_NOTAS; i++) {
+			System.out.println("Introduzca la " + i + " nota:");
+			notas[i] = in.nextInt();
+		}
+		
+		System.out.println("La media de las notas es: " + format.format(Utilidad.promedio(notas)));
+	}
+	
+	/*
+	 * 12. Escribe un programa en Java que sume los enteros impares entre 0 y 100. El programa debe
+			implementarse de tres formas distintas:
+			(a) Con un bucle while.
+			(b) Con un bucle do­while.
+			(c) Con un bucle for.
+	 */
+	private static void sumaEnterosImpares(int inicio, int fin) {
+		int suma;
+		
+		suma = Utilidad.sumaMultiplosFor(inicio, fin, 2);
+		suma = Utilidad.sumaMultiplosWhile(inicio, fin, 2);
+		suma = Utilidad.sumaMultiplosDoWhile(inicio, fin, 2);
+		
+		System.out.println("La suma de los enteros impares entre " + inicio + " y " + fin + " es: " + suma);
+	}
+	
+	/*
+	 * 13. Realiza un programa en Java que lea por teclado un entero y muestre por pantalla la tabla de
+			multiplicar correspondiente. Cuida tanto el formato de entrada como el de salida.
+	 */
+	private static void mostrarTablaNumero() {
+		Scanner in = new Scanner(System.in);
+		int numero;
+		
+		System.out.println("Introduzca el número del que mostrar su tabla de multiplicar:");
+		numero = in.nextInt();
+		
+		System.out.println(Utilidad.tablaMultiplicar(numero));
+	}
+	
+	/*
+	 * 14. Escribe un programa en Java que analice los resultados de un examen. El usuario introducirá notas por
+			teclado (­1 para terminar) y se debe ir mostrando si la nota equivale a: suspenso, suficiente, bien, notable
+			o sobresaliente. El programa debe implementarse de tres formas distintas:
+			(a) Con un bucle while.
+			(b) Con un bucle do­while.
+			(c) Con un bucle for.
+			Cuida tanto el formato de entrada como el de salida.
+	 */
+	private static void analizaResultadosExamen() {
+		
+	}
 }
