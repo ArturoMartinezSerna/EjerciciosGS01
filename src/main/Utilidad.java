@@ -92,4 +92,94 @@ public class Utilidad {
 				return b * calculaPotenciaRecursive(b*b, (e-1) / 2);
 		}
 	
+		/**
+		 * Calcula el valor de la posición empezando por la derecha
+		 * @param numero el número del que calcular
+		 * @param posicion la posición a calcular
+		 * @return el valor del dígito empezando por la derecha
+		 */
+	public static int calculaPosicionNumero(int numero, int posicion) {
+		int valorPosicion = 1;
+		
+		for(int i = 0; i < posicion; i++) {
+			valorPosicion *= 10;
+		}
+		// Eliminamos los digitos a la izquierda
+		numero = numero % valorPosicion;
+		
+		// Eliminamos los dígitos a la derecha
+		numero = numero / (valorPosicion / 10);
+		
+		return numero;
+	}
+	
+	
+	public static long nextPerfecto(long numero) {
+		long checkeo = 10;
+		for(long i = numero + 1; ; i++) {
+			if(isPerfecto(i))
+				return i;
+			if(numero > checkeo)
+			{
+				System.out.println("Checkeo! Número mayor de " + checkeo);
+				checkeo *= 10;
+			}
+		}
+	}
+	
+		/**
+		 * Calcula si el número recibido es un número perfecto
+		 * Un número es perfecto si la suma de sus divisores da el mismo número (contando el 1, sin contar el propio número)
+		 * @param numero es el número perfecto
+		 * @return true si es perfecto, false si no es perfecto
+		 */
+		public static boolean isPerfecto(long numero) {
+			long sumaDivisores = 1;
+			long siguienteDivisor = 2;
+						
+			while(siguienteDivisor <= Math.sqrt(numero)){
+				
+				if(numero % siguienteDivisor == 0) {
+					sumaDivisores += siguienteDivisor;
+					long cociente = numero / siguienteDivisor;
+					
+					if(cociente != siguienteDivisor)
+						sumaDivisores += cociente;
+				}
+				
+				siguienteDivisor++;
+			}
+
+			return sumaDivisores == numero;
+		}
+
+	/**
+	 * Calcula el número primo posterior más cercano al número recibido
+	 * @param numero es el número a partir del cual buscamos un primo
+	 * @return el número primo siguiente
+	 */
+	public static int nextPrimo(int numero) {
+		
+		while(true) {
+			numero++;
+			if(isPrimo(numero))
+				return numero;
+		}
+	}
+	
+		/**
+		 * Recibe un número, y calcula si es primo o no
+		 * @param numero el número primo
+		 * @return true si es primo, false si no es primo.
+		 */
+		public static boolean isPrimo(int primo) {
+			
+			for(int i = 2; i <= Math.sqrt(primo); i++) {
+				if(primo % i == 0) {
+					return false;
+				}
+					
+			}
+			return true;
+		}
 }
