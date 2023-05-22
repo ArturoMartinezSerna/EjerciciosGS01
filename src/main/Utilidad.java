@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Utilidad {
 	
 	/**
@@ -278,5 +280,21 @@ public class Utilidad {
 		
 		return tabla;
 	}
-	
+	/**
+	 * Cuenta los dígitos de un número recibido por parámetro
+	 * @param numero el número del que contar
+	 * @return el número de dígitos que tiene el número (en base 10)
+	 */
+	public static int cuentaDigitos(int numero) {
+		int digitos = 1;
+		int multiplicador = 10;
+		
+		while(numero >= multiplicador) {
+			System.out.println("Hola mundo!");
+			digitos++;
+			multiplicador *= 10;
+		}
+		
+		return digitos;
+	}
 }

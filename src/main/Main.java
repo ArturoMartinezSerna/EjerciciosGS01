@@ -1,6 +1,7 @@
 package main;
 
 import java.text.DecimalFormat;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -40,6 +41,37 @@ public class Main {
 			case 12: sumaEnterosImpares(0, 100);
 			break;
 			case 13: mostrarTablaNumero();
+			break;
+			case 14: analizaResultadosExamen();
+			break;
+			case 15: esPrimo();
+			break;
+			case 16: cuentaDigitosNumero();
+			break;
+			case 17: sumaXVeces();
+			break;
+			case 18: sumaMultiplosCualquiera();
+			break;
+			case 19: cuentaNegativos();
+			break;
+			case 20: muestraMayorMenorMedia();
+			break;
+			case 21: muestraTablasDel1Al10();
+			break;
+			case 22: muestraRectangulo();
+			break;
+			case 23: mostrarTriangulo();
+			break;
+			case 24: mostrarTrianguloInvertido();
+			break;
+			case 25: mostrarRectanguloHueco();
+			break;
+			case 26: mostrarPiramide();
+			break;
+			case 27: multiplo2Y5();
+			break;
+			case 28: dobleONada();
+			break;
 			}
 		}while(opcion != 0);
 	}
@@ -59,6 +91,22 @@ public class Main {
 		System.out.println("11: Calcula la media de 3 números");
 		System.out.println("12: Suma los enteros impares entre 0 y 100");
 		System.out.println("13: Mostrar la tabla de multiplicar de un número");
+		System.out.println("14: Analizar los resultados de un examen");
+		System.out.println("15: Calcular si un número es primo");
+		System.out.println("16: Mostrar el número de dígitos de un número");
+		System.out.println("17: Sumar una cantidad determinada de veces");
+		System.out.println("18: Suma de multiplos de un número");
+		System.out.println("19: Cuenta de las introducciones negativas");
+		System.out.println("20: Muestra del mayor, menor y la media de las introducciones");
+		System.out.println("21: Muestra las tablas de multiplicar del 1 al 10");
+		System.out.println("22: Mostrar un rectángulo");
+		System.out.println("23: Mostrar un triángulo");
+		System.out.println("24: Mostrar un triángulo invertido");
+		System.out.println("25: Mostrar un rectángulo hueco");
+		System.out.println("26: Mostrar una pirámide");
+		System.out.println("27: Determinar si un número es múltiplo de 2 y de 5");
+		System.out.println("28: Jugar al doble o nada una vez");
+		System.out.println("29: Averiguar el signo zodiacal");
 		System.out.println("0: Salir");
 	}
 	
@@ -348,7 +396,7 @@ public class Main {
 	
 	/*
 	 * 14. Escribe un programa en Java que analice los resultados de un examen. El usuario introducirá notas por
-			teclado (­1 para terminar) y se debe ir mostrando si la nota equivale a: suspenso, suficiente, bien, notable
+			teclado (­-1 para terminar) y se debe ir mostrando si la nota equivale a: suspenso, suficiente, bien, notable
 			o sobresaliente. El programa debe implementarse de tres formas distintas:
 			(a) Con un bucle while.
 			(b) Con un bucle do­while.
@@ -356,6 +404,359 @@ public class Main {
 			Cuida tanto el formato de entrada como el de salida.
 	 */
 	private static void analizaResultadosExamen() {
+		int nota;
 		
+		/*
+		do {
+			nota = pideNota();
+			System.out.println(transposeNota(nota));
+		} while(nota != -1);
+		
+		nota = pideNota();
+		System.out.println(transposeNota(nota));
+		
+		while(nota != -1) {
+			nota = pideNota();
+			System.out.println(transposeNota(nota));
+		}
+		*/
+		
+		for(nota = pideNota(); nota != -1; nota = pideNota()) {
+			System.out.println(transposeNota(nota));
+		}
+			
+	}
+	
+		private static int pideNota() {
+			Scanner in = new Scanner(System.in);
+			System.out.println("Introduzca la nota del alumno, o -1 para terminar:");
+			return in.nextInt();
+		}
+		
+		private static String transposeNota(int nota) {
+			if(nota <= 10 && nota >= 9)
+				return "Sobresaliente";
+			else if(nota >= 7)
+				return "Notable";
+			else if(nota >= 6)
+				return "Bien";
+			else if(nota >= 5)
+				return "Suficiente";
+			else if(nota >= 0)
+				return "Suspenso";
+			else if(nota == -1)
+				return "Gracias por utilizar nuestra aplicación";
+			else
+				return "Introduzca un valor válido";
+		}
+		
+	/*
+	 * 15. Implementa un programa en Java que dado un número introducido por teclado, averigue si es o no un
+			número primo.
+	 */
+	private static void esPrimo() {
+		Scanner in = new Scanner(System.in);
+		int numero;
+		
+		System.out.println("Por favor, introduzca un número para calcular si es o no un número primo:");
+		numero = in.nextInt();
+		
+		if(Utilidad.isPrimo(numero))
+			System.out.println("El número es primo");
+		else
+			System.out.println("El número no es primo");
+	}
+	
+	/*
+	 * 16. Escribe un programa en Java que dado un número entero introducido por teclado muestre por pantalla
+			de cuántos digitos está formado. Por ejemplo: 72045 está formado por 5 dígitos.
+	 */
+	private static void cuentaDigitosNumero() {
+		Scanner in = new Scanner(System.in);
+		int numero;
+		
+		System.out.println("Introduzca el número del que contar sus dígitos:");
+		numero = in.nextInt();
+		
+		System.out.println("El número de dígitos del número " + numero + " es: " + Utilidad.cuentaDigitos(numero));
+	}
+	
+	/*
+	 * 17. Escribe un programa que pregunte cuantos números vas a introducir, pida esos números y calcule su
+			suma. Usa un bucle for.
+	 */
+	private static void sumaXVeces() {
+		Scanner in = new Scanner(System.in);
+		int veces;
+		int suma = 0;
+		
+		veces = pideIntroducciones();
+		
+		for(int i = 1; i <= veces; i++) {
+			System.out.println("Introduzca el " + i + " sumando:");
+			suma += in.nextInt();
+		}
+		
+		System.out.println("El resultado de la suma es: " + suma);
+	}
+	
+	/*
+	 * 18. Implementa un programa en Java que sume los múltiplos de un número entero introducido por el
+			usuario por teclado. Debe sumar los múltiplos de dicho número entre el 1 y el límite que decida el
+			usuario.
+	 */
+	private static void sumaMultiplosCualquiera() {
+		Scanner in = new Scanner(System.in);
+		int fin;
+		int multiplo;
+		int suma;
+		
+		System.out.println("Introduzca el límite donde dejar de sumar múltiplos:");
+		fin = in.nextInt();
+		
+		System.out.println("Introduzca el número entero del cual sumar sus múltiplos:");
+		multiplo = in.nextInt();
+		
+		suma = Utilidad.sumaMultiplosFor(1, fin, multiplo);
+		
+		System.out.println("La suma de los múltiplos de " + multiplo + " entre " + 1 + " y " + fin + " es: " + suma);
+	}
+	
+	/*
+	 * 19. Escribe un programa que pregunte cuántos números vas a introducir, pida esos números y escriba
+			cuántos negativos has puesto. Usa un bucle for.
+	 */
+	private static void cuentaNegativos() {
+		Scanner in = new Scanner(System.in);
+		int negativos = 0;
+		int limite;
+		
+		limite = pideIntroducciones();
+		
+		for(int i = 1; i <= limite; i++) {
+			System.out.println("Introduzca el " + i + " numero:");
+			if(in.nextInt() < 0)
+				negativos++;
+		}
+		
+		System.out.println("Ha introducido: " + negativos + " números negativos.");
+	}
+	
+	/*
+	 * 20. Escribe un programa que pregunte cuántos números vas a introducir, pida esos números, y escriba el
+			mayor, el menor y la media. Usa un bucle for.
+	 */
+	private static void muestraMayorMenorMedia() {
+		Scanner in = new Scanner(System.in);
+		int mayor;
+		int menor;
+		double media;
+		int introducciones;
+		int numeroIntroducido;
+		DecimalFormat formato = new DecimalFormat("0.00");
+		
+		introducciones = pideIntroducciones();
+		
+		System.out.println("Introduzca el " + 1 + " numero:");
+		numeroIntroducido = in.nextInt();
+		
+		media = numeroIntroducido;
+		mayor = numeroIntroducido;
+		menor = numeroIntroducido;
+		
+		for(int i = 2; i <= introducciones; i++) {
+			System.out.println("Introduzca el " + i + " numero:");
+			numeroIntroducido = in.nextInt();
+			
+			media += numeroIntroducido;
+			
+			if(numeroIntroducido > mayor)
+				mayor = numeroIntroducido;
+			if(numeroIntroducido < menor)
+				menor = numeroIntroducido;
+		}
+		media = (double) (media / introducciones);
+		
+		System.out.println("El mayor número introducido fue el: " + mayor);
+		System.out.println("El menor número introducido fue el: " + menor);
+		System.out.println("La media de los números introducidos es:" + formato.format(media));
+	}
+	
+	private static void muestraTablasDel1Al10() {
+		for(int i = 1; i <= 10; i++) {
+			System.out.println(Utilidad.tablaMultiplicar(i));
+		}
+	}
+	
+	
+	/*
+	 * 22. Escribe un programa que pida la anchura y altura de un rectángulo y lo dibuje de la siguiente manera:
+			Anchura del rectángulo: 5
+			Altura del rectángulo: 3
+					*****
+					*****
+					*****
+	 */
+	private static void muestraRectangulo() {
+		Scanner in = new Scanner(System.in);
+		int alto;
+		int ancho;
+		String rectangulo;
+		
+		System.out.print("Anchura del rectángulo:");
+		ancho = in.nextInt();
+		System.out.print("Altura del rectángulo:");
+		alto = in.nextInt();
+		
+		rectangulo = Geometria.creaRectangulo(alto, ancho);
+		
+		System.out.println(rectangulo);
+	}
+	
+	/*
+	 * 23. Escribe un programa que pida la altura de un triángulo y lo dibuje de la siguiente manera:
+			Altura del triángulo: 4
+			*
+			**
+			***
+			****
+			Usa un bucle for.
+	 */
+	private static void mostrarTriangulo() {
+		Scanner in = new Scanner(System.in);
+		int alto;
+		String triangulo;
+		
+		System.out.print("Altura del triangulo:");
+		alto = in.nextInt();
+		
+		triangulo = Geometria.creaTriangulo(alto);
+		
+		System.out.println(triangulo);
+	}
+	
+	
+	/*
+	 * 24. Escribe un programa que pida la altura de un triángulo y lo dibuje de la siguiente manera:
+			Altura del triángulo: 4
+			****
+			***
+			**
+			*
+			Usa un bucle for.
+	 */
+	private static void mostrarTrianguloInvertido() {
+		Scanner in = new Scanner(System.in);
+		int alto;
+		String triangulo;
+		
+		System.out.print("Altura del triangulo:");
+		alto = in.nextInt();
+		
+		triangulo = Geometria.creaTrianguloInvertido(alto);
+		
+		System.out.println(triangulo);
+	}
+	
+	/*
+	 * 25. Escribe un programa que pida la anchura y altura de un rectángulo y lo dibuje de la siguiente manera:
+		Anchura del rectángulo: 5
+		Altura del rectángulo: 4
+		*****
+		*	*
+		*	*
+		*****
+		Usa un bucle for.
+	 */
+	private static void mostrarRectanguloHueco() {
+		Scanner in = new Scanner(System.in);
+		int alto;
+		int ancho;
+		String rectangulo;
+		
+		System.out.print("Anchura del rectángulo:");
+		ancho = in.nextInt();
+		System.out.print("Altura del rectángulo:");
+		alto = in.nextInt();
+		
+		rectangulo = Geometria.creaRectanguloHueco(alto, ancho);
+		
+		System.out.println(rectangulo);
+	}
+	
+	/*
+	 * 26. Escribe un programa que pida la altura de un triángulo y lo dibuje de la siguiente manera:
+			Altura del triángulo: 5
+				    *
+				   ***
+				  *****
+				 *******
+				*********
+			Usa un bucle for.
+	 */
+	private static void mostrarPiramide() {
+		Scanner in = new Scanner(System.in);
+		int altura;
+		String piramide;
+		
+		System.out.print("Altura del triángulo:");
+		altura = in.nextInt();
+		
+		piramide = Geometria.creaPiramide(altura);
+		
+		System.out.println(piramide);
+	}
+	
+	/*
+	 * 27. Escribir un programa que pida un número entero y determine si es múltiplo de 2 y de 5.
+	 */
+	private static void multiplo2Y5() {
+		Scanner in = new Scanner(System.in);
+		int numero;
+		
+		System.out.println("Por favor, introduzca un número del que calcular si es múltiplo de 2 y de 5.");
+		numero = in.nextInt();
+		
+		if(numero % 2 == 0)
+			System.out.println("El número es múltiplo de 2");
+		if(numero % 5 == 0)
+			System.out.println("El número es múltiplo de 5");
+		if(numero % 2 != 0 && numero % 5 != 0)
+			System.out.println("El número no es múltiplo ni de 2 ni de 5");
+	}
+	
+	/*
+	 * 28. Escribir un programa que permita jugar a doble o nada: El jugador apuesta una cantidad y tira una
+			moneda. Si sale cara obtiene el doble de la cantidad apostada. Si sale cruz la pierde todo.
+	 */
+	private static void dobleONada() {
+		Scanner in = new Scanner(System.in);
+		Random random = new Random();
+		
+		int apuesta;
+		
+		System.out.println("Introduzca cúanto desea jugarse:");
+		apuesta = in.nextInt();
+		
+		if(random.nextInt() % 2 == 0) {
+			apuesta *= 2;
+			System.out.println("Has ganado! Ahora tienes " + apuesta);
+		}
+		else {
+			apuesta = 0;
+			System.out.println("Has perdido. Ahora tienes " + apuesta);
+		}
+		
+	}
+	
+	
+	/**
+	 * Pide el número de introducciones que hará el usuario y lo devuelve
+	 * @return el número de introducciones que el usuario efectuará
+	 */
+	private static int pideIntroducciones() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Introduzca cuántas introducciones va a efectuar:");
+		return in.nextInt();
 	}
 }
