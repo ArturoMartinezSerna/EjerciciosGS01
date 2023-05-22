@@ -72,6 +72,14 @@ public class Main {
 			break;
 			case 28: dobleONada();
 			break;
+			case 29: averiguaSignoZodiaco();
+			break;
+			case 30: dobleONadaInfinito();
+			break;
+			case 31: adivinaNumero(1, 6);
+			break;
+			case 32: password();
+			break;
 			}
 		}while(opcion != 0);
 	}
@@ -107,6 +115,9 @@ public class Main {
 		System.out.println("27: Determinar si un número es múltiplo de 2 y de 5");
 		System.out.println("28: Jugar al doble o nada una vez");
 		System.out.println("29: Averiguar el signo zodiacal");
+		System.out.println("30: Jugar al doble o nada a peticion");
+		System.out.println("31: Jugar a adivinar un número");
+		System.out.println("32: Acceder con la contraseña");
 		System.out.println("0: Salir");
 	}
 	
@@ -749,6 +760,128 @@ public class Main {
 		
 	}
 	
+	/*
+	 * 29. Escribir un programa que, pida la fecha de nacimiento de una persona e imprima por pantalla su signo
+			zodiacal.
+	 */
+	private static void averiguaSignoZodiaco() {
+		Scanner in = new Scanner(System.in);
+		int dia;
+		int mes;
+		int anio;
+		String signoZodiaco;
+		
+
+		System.out.println("Introduzca su día de nacimiento:");
+		dia = in.nextInt();
+		
+		System.out.println("Introduzca su mes de nacimiento:");
+		mes = in.nextInt();
+		
+		System.out.println("Introduzca su año de nacimiento:");
+		anio = in.nextInt();
+		
+		signoZodiaco = Utilidad.signoZodiaco(dia, mes);
+		
+		System.out.println("Su signo del zodíaco es: " + signoZodiaco);
+	}
+	
+	
+	/*
+	 * 30. Modificar el programa del juego de doble o nada para que permita ir jugando hasta que el jugador
+			decida abandonar el juego. El programa debe sacar por pantalla el número de jugadas y el total ganado
+			por el jugador (si ha perdido debe ser una cantidad negativa).
+	 */
+	private static void dobleONadaInfinito() {
+		Scanner in = new Scanner(System.in);
+		Random random = new Random();
+		String respuesta = "";
+		int apuesta;
+		
+		System.out.println("Introduzca cúanto desea jugarse:");
+		apuesta = in.nextInt();
+		in.nextLine();
+		do {
+			if(random.nextInt() % 2 == 0) {
+				apuesta *= 2;
+				System.out.println("Has ganado! Ahora tienes " + apuesta);
+			}
+			else {
+				apuesta = 0;
+				System.out.println("Has perdido. Ahora tienes " + apuesta);
+			}
+			if(apuesta != 0) {
+				do {
+					System.out.println("Desea volver a jugar? Si | No");
+					respuesta = in.nextLine();
+				}while(!respuesta.equalsIgnoreCase("no") && !respuesta.equalsIgnoreCase("si"));
+			}
+		}while(respuesta.equalsIgnoreCase("si") && apuesta != 0);
+		System.out.println("Gracias por jugar a \"Doble o Nada!\"");
+	}
+	
+	
+	/*
+	 * 31. Escribir un programa para jugar a adivinar un número entre 1 y 6 (generado al azar por el ordenador)
+			hasta acertarlo o decirlos todos.
+	 */
+	private static void adivinaNumero(int minimo, int maximo) {
+		Scanner in = new Scanner(System.in);
+		int intento;
+		int contadorIntentos = 0;
+		
+		int adivinanza = (int)(Math.random()*6) + 1;
+		System.out.println("Cheat: " + adivinanza);
+		while(contadorIntentos < maximo + 1 - minimo) {
+			System.out.println("Se ha generado un número entre " + minimo +" y " + maximo + ". Intente adivinarlo:");
+			intento = in.nextInt();
+			contadorIntentos++;
+			if(intento == adivinanza) {
+				System.out.println("Correcto!");
+				return;
+			}
+			else
+				System.out.println("Incorrecto!");
+		}
+		if(contadorIntentos == maximo + 1 - minimo)
+			System.out.println("Se acabaron los intentos...");
+	}
+	
+	
+	/*
+	 * 32. Uno de los usos más habituales para los bucles condicionales es la validación de entradas. Escribir un
+			programa que pida una contraseña y permita tres intentos. Si el usuario da la contraseña correcta responde
+			"Enhorabuena!" y queda inactivo, con este mensaje. En caso contrario el programa escribe "Lo siento,
+			contraseña equivocada" y se cierra de inmediato.
+	 */
+	private static void password() {
+		Scanner in = new Scanner(System.in);
+		final String PASS = "May the bahamuts rise again";
+		int intentos = 3;
+		String intentoPass = "";
+		
+		while(intentos > 0 && !intentoPass.equals(PASS)) {
+			System.out.println("Introduzca su contraseña. " + intentos + " intentos restantes.");
+			intentoPass = in.nextLine();
+			intentos--;
+			
+			if(intentoPass.equals(PASS)) {
+				System.out.println("Enhorabuena!");
+			}
+			else
+				System.out.println("Contraseña equivocada.");
+		}
+		
+		if(intentoPass.equals(PASS)) {
+			while(true) {
+				// Programa
+			}
+		}
+		else {
+			System.out.println("Se acabaron los intentos.");
+			System.exit(0);
+		}
+	}
 	
 	/**
 	 * Pide el número de introducciones que hará el usuario y lo devuelve

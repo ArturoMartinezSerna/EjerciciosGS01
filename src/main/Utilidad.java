@@ -297,4 +297,78 @@ public class Utilidad {
 		
 		return digitos;
 	}
+	
+	/**
+	 * Averigua el signo del zodiaco dependiendo del día y mes en que nació
+	 * @param dia el día de nacimiento
+	 * @param mes el mes de nacimiento
+	 * @return un String con el signo del zodíaco del usuario
+	 */
+	public static String signoZodiaco(int dia, int mes) {
+		
+		final boolean ACUARIO = ((mes == 1 && dia >= 20) || (mes == 2 && dia <= 18));
+		final boolean PISCIS = ((mes == 2 && dia >= 19) || (mes == 3 && dia <= 20));
+		final boolean ARIES = ((mes == 3 && dia >= 21) || (mes == 4 && dia <= 19));
+		final boolean TAURO = ((mes == 4 && dia >= 20) || (mes == 5 && dia <= 20));
+		final boolean GEMINIS = ((mes == 5 && dia >= 21) || (mes == 6 && dia <= 20));
+		final boolean CANCER = ((mes == 6 && dia >= 21) || (mes == 7 && dia <= 22));
+		final boolean LEO = ((mes == 7 && dia >= 23) || (mes == 8 && dia <= 22));
+		final boolean VIRGO = ((mes == 8 && dia >= 23) || (mes == 9 && dia <= 22));
+		final boolean LIBRA = ((mes == 9 && dia >= 23) || (mes == 10 && dia <= 22));
+		final boolean ESCORPIO = ((mes == 10 && dia >= 23) || (mes == 11 && dia <= 21));
+		final boolean SAGITARIO = ((mes == 11 && dia >= 22) || (mes == 12 && dia <= 21));
+		final boolean CAPRICORNIO = ((mes == 12 && dia >= 22) || (mes == 1 && dia <= 19));
+		
+		if(ACUARIO)
+			return "Acuario";
+		else if(PISCIS)
+			return "Piscis";
+		else if(ARIES)
+			return "Aries";
+		else if(TAURO)
+			return "Tauro";
+		else if(GEMINIS)
+			return "Geminis";
+		else if(CANCER)
+			return "Cancer";
+		else if(LEO)
+			return "Leo";
+		else if(VIRGO)
+			return "Virgo";
+		else if(LIBRA)
+			return "Libra";
+		else if(ESCORPIO)
+			return "Escorpio";
+		else if(CAPRICORNIO)
+			return "Capricornio";
+		else
+			return "Inesperado";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
