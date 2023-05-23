@@ -57,6 +57,12 @@ public class Validaciones {
 		return opcion;
 	}
 	
+	
+	/**
+	 * Repite la petición de un valor si|no hasta que se introduzca
+	 * @param pregunta la pregunta a mostrar al usuario
+	 * @return true si es sí, false si es no.
+	 */
 	public static boolean pideYesNo(String pregunta) {
 		Scanner in = new Scanner(System.in);
 		String respuesta;
